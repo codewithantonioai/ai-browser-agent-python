@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workshop sign-up</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>AI Builders Workshop</h1>
+  <p>Free online sessions. Pick one and save your seat.</p>
+  <form id="signup">
+    <label for="name">Full name</label>
+    <input id="name" name="name" required>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" required>
+    <label for="session">Session</label>
+    <select id="session" name="session">
+      <option>Choose a session</option>
+      <option>Browser agents · Oct 20</option>
+      <option>Local RAG · Oct 27</option>
+      <option>MCP servers · Nov 3</option>
+    </select>
+    <label for="goal">What do you want to build?</label>
+    <textarea id="goal" name="goal" rows="3"></textarea>
+    <label class="check"><input id="rules" name="rules" type="checkbox" required> I agree to the code of conduct</label>
+    <button type="submit">Sign up</button>
+  </form>
+  <p id="done" hidden></p>
+</main>
+<script>
+document.getElementById("signup").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  e.target.hidden = true;
+  const done = document.getElementById("done");
+  done.textContent = `You're in, ${f.get("name")}! ${f.get("session")}. We sent the details to ${f.get("email")}.`;
+  done.hidden = false;
+});
+</script>
+</body>
+</html>
